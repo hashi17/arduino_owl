@@ -371,7 +371,7 @@ int val;
 void setup() {
   Serial.begin(115200);
   pinMode(2, INPUT);  // motion sensor
-  pinMode(13, OUTPUT); // LED
+  pinMode(11, OUTPUT); // LED
   pinMode(3, OUTPUT); // speaker
 //  TCCR2A = 0b00100011; // *** 高速PWM設定
 //  TCCR2B = 0b00011001;
@@ -380,6 +380,7 @@ void setup() {
   TCCR2A = _BV(COM2B1) | _BV(WGM21) | _BV(WGM20);
   TCCR2B = _BV(CS20);
   myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+  myservo.write(90); // tell servo to go to position in variable 'pos'
 }
 
 void play() {
@@ -423,21 +424,38 @@ void loop() {
   Serial.println(val); 
 
   if (val == HIGH) {
-    digitalWrite(13, HIGH);
+    //digitalWrite(13, HIGH);
+    for(int i=0; i<256; i=i+10) {
+      analogWrite(11, i);
+      delay(50);
+    }
 
-    for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+    for (pos = 90; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
       // in steps of 1 degree
       myservo.write(pos);              // tell servo to go to position in variable 'pos'
       delay(15);                       // waits 15ms for the servo to reach the position
     }
-    for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+    for (pos = 180; pos >= 90; pos -= 1) { // goes from 180 degrees to 0 degrees
+      myservo.write(pos);              // tell servo to go to position in variable 'pos'
+      delay(15);                       // waits 15ms for the servo to reach the position
+    }
+    for (pos = 90; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+      myservo.write(pos);              // tell servo to go to position in variable 'pos'
+      delay(15);                       // waits 15ms for the servo to reach the position
+    }
+    for (pos = 0; pos <= 90; pos += 1) { // goes from 0 degrees to 180 degrees
+      // in steps of 1 degree
       myservo.write(pos);              // tell servo to go to position in variable 'pos'
       delay(15);                       // waits 15ms for the servo to reach the position
     }
     play();
     delay(1000);
     play();
-    digitalWrite(13, LOW);
+    for(int i=255; i>0; i=i-10) {
+      analogWrite(11, i);
+      delay(50);
+    }
+    digitalWrite(11, LOW);
   }
  
   delay(1000);
