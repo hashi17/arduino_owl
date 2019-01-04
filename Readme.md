@@ -54,3 +54,6 @@ const unsigned char voice_file[] PROGMEM = {
 ```
 音声データは外出しで、OwlTone.h/OwlTone2.h/OwlTone3.h/OwlTone5.hの4種類あり、どれかを本体から呼び出すようにしている
 > 現在はOwlTone5.hを利用しているが、スピーカーが性能が今一で、どれもフクロウっぽくない。。
+
+完成品はこちら
+![](./figure3.png)
