@@ -31,15 +31,19 @@
 
 [手順]
 * 音声を読み込んで、モノラル、8,000Hzに設定
+
 ![](./figure7.png) 
 
 * 音声を編集したらExport
+
 ![](./figure5.png)
 
 * その他の圧縮ファイル/RAW/Ungigned 8-bit PCMで保存
+
 ![](./figure6.png)
 
 * 文字コードに変換してArduinoのコードに埋め込む
+
 ```
 $ xxd -i voice_file.raw
 unsigned char voice_file[] = {
