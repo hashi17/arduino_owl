@@ -64,3 +64,14 @@ const unsigned char voice_file[] PROGMEM = {
 
 完成品はこちら
 ![](./figure3.png)
+
+## GitHub にアップロード
+* リポジトリ
+    * https://github.com/hashi17/arduino_owl
+* Git
+```
+$ git remote add origin https://github.com/hashi17/arduino_owl
+$ git push -u origin master
+User:xxxx
+Passwd:***
+```
